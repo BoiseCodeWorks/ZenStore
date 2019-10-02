@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseURL = "https://localhost:5001"
+let baseURL = location.port != "5001" ? "https://localhost:5001" : ""
 
 export let api = axios.create({
   baseURL: baseURL + '/api',
