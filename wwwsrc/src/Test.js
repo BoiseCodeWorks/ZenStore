@@ -68,7 +68,11 @@ export class Suite {
   async runTests() {
     this.running = true
     try {
-      await Promise.all(this.tests.map(t => t.execute.call(t)))
+      for (let i = 0; i < this.tests.length; i++) {
+        const test = this.tests[i];
+        await test.execute.call(test)
+      }
+      // await Promise.all(this.tests.map(t => t.execute.call(t)))
     } catch (e) {
       console.error(e)
     } finally {
@@ -78,7 +82,7 @@ export class Suite {
   }
 
   async get() {
-    let res = await api.post(this.path)
+    let res = await api.get(this.path)
     return res.data
   }
   async create(payload) {

@@ -1,14 +1,16 @@
 import axios from 'axios'
 
+let baseURL = "https://localhost:5001"
+
 export let api = axios.create({
-  baseURL: '/api',
-  timeout: 5000,
+  baseURL: baseURL + '/api',
+  timeout: 8000,
   withCredentials: true
 })
 
 export let auth = axios.create({
-  baseURL: '/account',
-  timeout: 5000,
+  baseURL: baseURL + '/account',
+  timeout: 8000,
   withCredentials: true
 })
 
