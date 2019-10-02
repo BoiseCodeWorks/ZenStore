@@ -4,8 +4,10 @@
 
     <div class="row">
       <div class="col-12 mb-3 text-center">
-        <img src="logo.png" height="150" alt />
-        <h1>{{title}} Testing Tool</h1>
+        <div class="d-flex flex-column align-items-center mb-3 mt-3">
+          <img src="logo.png" width="150" alt />
+          <em class="text-success">Testing from the ground up</em>
+        </div>
         <div class="card border-info">
           <div class="card-body readMeSection text-left">
             <h3 class="d-flex align-items-center justify-content-between">

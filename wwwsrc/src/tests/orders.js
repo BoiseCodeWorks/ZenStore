@@ -29,7 +29,7 @@ export class OrdersSuite extends Suite {
             description: "ADDING ORDERS",
             price: 5.00
           })
-          testData.products.push(p2res.data.id, p1res.data.id)
+          testData.products.push(p2res.data, p1res.data)
 
           this.order = await this.create(testData)
 
@@ -56,7 +56,7 @@ export class OrdersSuite extends Suite {
             price: 1.00
           })
           this.order.name = "EDITED"
-          this.order.products.push(pRes.data.id)
+          this.order.products.push(pRes.data)
           let res = await this.update(this.order)
 
           if (res.name != this.order.name || res.total != 8) {
