@@ -120,7 +120,7 @@ export class OrdersSuite extends Suite {
         async () => {
           this.order.name = "A_NEW_ORDER"
           delete this.order.id
-          this.order = this.create(this.order)
+          this.order = await this.create(this.order)
 
           let res = await api.put("orders/" + this.order.id + "/cancel")
           this.order = res.data
