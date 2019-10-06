@@ -90,7 +90,7 @@ export class OrdersSuite extends Suite {
           try {
             let res = await this.update(this.order)
           } catch (e) {
-            if (!e.status || e.status == 404) { throw e }
+            if (!e.response) { throw e }
             return new TestReport(true, "Shipped orders can't be edited")
           }
           throw new Error("order edited after shipped")
@@ -105,7 +105,7 @@ export class OrdersSuite extends Suite {
           try {
             let res = await api.put("orders/" + this.order.id + "/cancel")
           } catch (e) {
-            if (!e.status || e.status == 404) { throw e }
+            if (!e.response) { throw e }
             return new TestReport(true, "Unable to cancel order after it is shipped")
           }
           throw new Error("Once an order is shipped it cannot be canceled")
@@ -119,7 +119,7 @@ export class OrdersSuite extends Suite {
         PATH + "/:id/cancel",
         async () => {
           this.order.name = "A_NEW_ORDER"
-          this.order.products = this.order.products.map(p => p.id)
+          delete this.order.id
           this.order = this.create(this.order)
 
           let res = await api.put("orders/" + this.order.id + "/cancel")
@@ -140,7 +140,7 @@ export class OrdersSuite extends Suite {
           try {
             let res = await this.update(this.order)
           } catch (e) {
-            if (!e.status || e.status == 404) { throw e }
+            if (!e.response) { throw e }
             return new TestReport(true, "Canceled orders can't be edited")
           }
           throw new Error("order edited after canceled")
@@ -155,7 +155,7 @@ export class OrdersSuite extends Suite {
           try {
             let res = await api.put("orders/" + this.order.id + "/ship")
           } catch (e) {
-            if (!e.status || e.status == 404) { throw e }
+            if (!e.response) { throw e }
             return new TestReport(true, "Unable to ship order after it is canceled")
           }
           throw new Error("Once an order is canceled it cannot be shipped")
